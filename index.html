@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timeless Stories | Fine Art Photography</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav>
+        <div class="logo">LUMINA</div>
+        <div class="nav-links">
+            <a href="#" onclick="showPage('home')">Gallery</a>
+            <a href="#" onclick="showPage('services')">Services & Contact</a>
+        </div>
+    </nav>
+
+    <section id="home" class="page active">
+        <header class="hero">
+            <div class="hero-content">
+                <h1 class="fade-in">Timeless Stories by the Sea</h1>
+                <p class="fade-in-delayed">Moments in Black & White</p>
+            </div>
+        </header>
+
+        <main class="gallery-container">
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&q=80&w=800" alt="Wedding"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1471922694854-ff1b63b20054?auto=format&fit=crop&q=80&w=800" alt="Beach"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=800" alt="Couple"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=800" alt="Sea Breeze"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1532706302136-3373373133bc?auto=format&fit=crop&q=80&w=800" alt="Minimalist Bride"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1494236581341-7d38b2e7d824?auto=format&fit=crop&q=80&w=800" alt="Shoreline"></div>
+            </div>
+        </main>
+    </section>
+
+    <section id="services" class="page">
+        <div class="content-wrapper">
+            <h2 class="section-title">The Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Wedding Photography</h3>
+                    <p>Capturing the raw, emotional essence of your union through a monochrome lens. Focus on candids and quiet moments.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Beach Sessions</h3>
+                    <p>High-contrast sessions by the water. The movement of the sea meets the stillness of the portrait.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Custom Shoots</h3>
+                    <p>Tailored editorial or intimate portrait sessions designed to reflect your unique narrative.</p>
+                </div>
+            </div>
+
+            <hr class="divider">
+
+            <div class="contact-section">
+                <h2>Let’s Capture Your Story</h2>
+                <form id="contact-form">
+                    <input type="text" placeholder="Name" required>
+                    <input type="email" placeholder="Email" required>
+                    <textarea placeholder="Tell me about your vision..." rows="5"></textarea>
+                    <button type="submit">Send Inquiry</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Designed with ♥ </p>
+    </footer>
+
+    <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
+        <img id="lightbox-img" src="" alt="Zoomed view">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
