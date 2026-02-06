@@ -10,7 +10,6 @@
   <link rel="stylesheet" href="assets/CSS/style.css" />
   <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/GabrielaFiona/examplesite_photographer/0e432fa3c2a15fb30bd2d79b205e59b89f102fa8/assets/img/luminalogotrans.png">
 </head>
-</head>
 <body>
 
   <nav class="nav" aria-label="Primary">
@@ -22,10 +21,11 @@
       <span></span><span></span><span></span>
     </button>
 
-<div class="hero-actions reveal">
-  <a href="#work" class="btn btn-primary">Explore Gallery</a>
-  <button class="btn btn-ghost" data-cta="open-inquiry">Book a Session</button>
-</div>
+    <div class="nav-links" data-nav-links>
+      <a href="#" data-page="home" class="nav-link is-active">Gallery</a>
+      <a href="#" data-page="services" class="nav-link">Services</a>
+      <button class="btn btn-primary" type="button" data-cta="open-inquiry">Check availability</button>
+    </div>
   </nav>
 
   <section id="home" class="page active">
@@ -35,8 +35,8 @@
         <h1 class="reveal">Timeless stories by the sea.</h1>
         <p class="hero-sub reveal">Documentary emotion and editorial elegance, captured in luminous black and white on the Oregon Coast.</p>
         <div class="hero-actions reveal">
-          <button class="btn btn-primary" id="work">Explore Gallery</button>
-          <button class="btn btn-ghost" data-cta="open-inquiry">Book a Session</button>
+          <button class="btn btn-primary" type="button" data-cta="view-work">Explore Gallery</button>
+          <button class="btn btn-ghost" type="button" data-cta="open-inquiry">Book a Session</button>
         </div>
       </div>
     </header>
@@ -51,7 +51,7 @@
           <div class="about-text">
             <p class="eyebrow" style="color: var(--muted)">The Artist</p>
             <p class="about-quote">"I believe the most beautiful photos aren't staged; they're felt. With five years of documenting love stories against the backdrop of the Pacific, my work focuses on the raw, quiet moments—the sea spray, the shared whispers, and the light that only exists at dawn."</p>
-            <button class="btn btn-primary" data-cta="view-work">More about the experience →</button>
+            <button class="btn btn-primary" type="button" data-page="services">More about the experience →</button>
           </div>
         </div>
       </section>
