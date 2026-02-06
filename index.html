@@ -1,82 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Timeless Stories | Fine Art Photography</title>
-    <link rel="stylesheet" href="assets/CSS/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LUMINA | Fine Art Photography</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400;0,600;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-    <nav>
-        <div class="logo">LUMINA</div>
-        <div class="nav-links">
-            <a href="#" onclick="showPage('home')">Gallery</a>
-            <a href="#" onclick="showPage('services')">Services & Contact</a>
-        </div>
-    </nav>
+  <nav class="nav" aria-label="Primary">
+    <a class="logo" href="#" data-page="home">
+      <img src="LUMINAlogo.png" alt="Lumina Logo" class="nav-logo-img">
+    </a>
 
-    <section id="home" class="page active">
-        <header class="hero">
-            <div class="hero-content">
-                <h1 class="fade-in">Timeless Stories by the Sea</h1>
-                <p class="fade-in-delayed">Moments in Black & White</p>
-            </div>
-        </header>
+    <button class="nav-toggle" type="button" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
 
-        <main class="gallery-container">
-            <div class="gallery-grid">
-                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&q=80&w=800" alt="Wedding"></div>
-                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1471922694854-ff1b63b20054?auto=format&fit=crop&q=80&w=800" alt="Beach"></div>
-                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=800" alt="Couple"></div>
-                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=800" alt="Sea Breeze"></div>
-                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1532706302136-3373373133bc?auto=format&fit=crop&q=80&w=800" alt="Minimalist Bride"></div>
-                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1494236581341-7d38b2e7d824?auto=format&fit=crop&q=80&w=800" alt="Shoreline"></div>
-            </div>
-        </main>
-    </section>
-
-    <section id="services" class="page">
-        <div class="content-wrapper">
-            <h2 class="section-title">The Services</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <h3>Wedding Photography</h3>
-                    <p>Capturing the raw, emotional essence of your union through a monochrome lens. Focus on candids and quiet moments.</p>
-                </div>
-                <div class="service-card">
-                    <h3>Beach Sessions</h3>
-                    <p>High-contrast sessions by the water. The movement of the sea meets the stillness of the portrait.</p>
-                </div>
-                <div class="service-card">
-                    <h3>Custom Shoots</h3>
-                    <p>Tailored editorial or intimate portrait sessions designed to reflect your unique narrative.</p>
-                </div>
-            </div>
-
-            <hr class="divider">
-
-            <div class="contact-section">
-                <h2>Let’s Capture Your Story</h2>
-                <form id="contact-form">
-                    <input type="text" placeholder="Name" required>
-                    <input type="email" placeholder="Email" required>
-                    <textarea placeholder="Tell me about your vision..." rows="5"></textarea>
-                    <button type="submit">Send Inquiry</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <p>Designed with ♥ </p>
-    </footer>
-
-    <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
-        <img id="lightbox-img" src="" alt="Zoomed view">
+    <div class="nav-links" data-nav-links>
+      <a href="#" data-page="home" class="nav-link is-active">Gallery</a>
+      <a href="#" data-page="services" class="nav-link">Services</a>
+      <button class="btn btn-primary" type="button" data-cta="open-inquiry">Check availability</button>
     </div>
+  </nav>
 
-    <script src="assets/js/script.js"></script>
+  <section id="home" class="page active">
+    <header class="hero">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1 class="reveal">Timeless stories by the sea.</h1>
+        <p class="hero-sub reveal">Documentary emotion and editorial elegance, captured in luminous black and white on the Oregon Coast.</p>
+        <div class="hero-actions reveal">
+          <button class="btn btn-primary" data-cta="view-work">Explore Gallery</button>
+          <button class="btn btn-ghost" data-cta="open-inquiry">Book a Session</button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="section container">
+        <div class="about-split reveal">
+          <div class="about-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=800" alt="Photographer portrait" class="rounded-img artist-profile-img">
+          </div>
+          
+          <div class="about-text">
+            <p class="eyebrow" style="color: var(--muted)">The Artist</p>
+            <p class="about-quote">"I believe the most beautiful photos aren't staged; they're felt. With five years of documenting love stories against the backdrop of the Pacific, my work focuses on the raw, quiet moments—the sea spray, the shared whispers, and the light that only exists at dawn."</p>
+            <button class="link" data-page="services">More about the experience →</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-dark" id="work">
+        <div class="container">
+          <div class="section-head">
+            <h2 class="section-title reveal">Gallery</h2>
+            <div class="gallery-toolbar reveal">
+              <button class="chip is-active" data-filter="all">All</button>
+              <button class="chip" data-filter="wedding">Weddings</button>
+              <button class="chip" data-filter="coastal">Coastal</button>
+              <button class="chip" data-filter="editorial">Editorial</button>
+            </div>
+          </div>
+
+          <div class="gallery-masonry">
+            <figure class="gallery-item" data-category="wedding"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1200" alt="Wedding"></figure>
+            <figure class="gallery-item" data-category="coastal"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=1200" alt="Sea Breeze"></figure>
+            <figure class="gallery-item" data-category="editorial"><img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&q=80&w=1200" alt="Portrait"></figure>
+            </div>
+        </div>
+      </section>
+    </main>
+  </section>
+
+  <section id="services" class="page">
+    <div class="container content-wrapper">
+      
+      <div class="section-head center reveal">
+        <p class="eyebrow" style="color: var(--muted); opacity: 1;">Investment</p>
+        <h2 class="section-title" style="color: var(--text);">The Services</h2>
+        <p class="section-sub" style="color: var(--muted);">Transparent pricing for timeless, monochrome storytelling on the Pacific Coast.</p>
+      </div>
+
+      <div class="packages-grid">
+        <article class="package-card reveal">
+          <div class="package-top">
+            <h3>Wedding Photography</h3>
+            <p class="price">Starting at <strong>$3,200</strong></p>
+          </div>
+          <p class="package-desc">Capturing the raw, emotional essence of your union through a monochrome lens. We bypass the stiff poses to focus on the heavy sighs, the frantic joy, and the quiet, unscripted glances that define your day.</p>
+          <ul class="bullets">
+            <li>8+ hours of continuous coverage</li>
+            <li>Second photographer for alternative angles</li>
+            <li>Private online gallery with print rights</li>
+            <li>Custom heirloom album design consultation</li>
+          </ul>
+        </article>
+
+        <article class="package-card reveal" style="--delay: 80ms;">
+          <div class="package-top">
+            <h3>Beach Sessions</h3>
+            <p class="price">Starting at <strong>$450</strong></p>
+          </div>
+          <p class="package-desc">High-contrast sessions where the wild movement of the sea meets the stillness of the portrait. Perfect for couples or individuals looking to capture their connection with the rugged Oregon coastline.</p>
+          <ul class="bullets">
+            <li>90-minute session during Golden or Blue hour</li>
+            <li>Selection of 40+ hand-edited monochrome images</li>
+            <li>Location scouting along the North Coast</li>
+            <li>Outfit and styling guide included</li>
+          </ul>
+        </article>
+
+        <article class="package-card reveal" style="--delay: 140ms;">
+          <div class="package-top">
+            <h3>Custom Shoots</h3>
+            <p class="price"><strong>Custom Quote</strong></p>
+          </div>
+          <p class="package-desc">Tailored editorial or intimate portrait sessions designed to reflect your unique narrative. From brand storytelling to creative fashion editorials, we build a visual language that is exclusively yours.</p>
+          <ul class="bullets">
+            <li>Concept planning & creative direction</li>
+            <li>Full-day or half-day options available</li>
+            <li>Commercial licensing & high-res delivery</li>
+            <li>Expedited post-production workflow</li>
+          </ul>
+        </article>
+      </div>
+
+      <hr class="divider">
+
+      <section class="contact-section reveal" id="contact-title">
+        <div class="form-container">
+          <h2 class="section-title" style="color: var(--text);">Start a Conversation</h2>
+          <form id="contact-form" class="form">
+            <div class="form-grid">
+              <input type="text" name="name" placeholder="Full Name" required>
+              <input type="email" name="email" placeholder="Email Address" required>
+              <select name="type">
+                <option value="">Select Session Type</option>
+                <option value="Wedding">Wedding</option>
+                <option value="Coastal">Beach Session</option>
+                <option value="Custom">Custom/Editorial</option>
+              </select>
+            </div>
+            <textarea name="message" placeholder="Tell me your story..."></textarea>
+            <button class="btn btn-primary" type="submit">Submit Inquiry</button>
+          </form>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <img src="LUMINAlogo.png" alt="Lumina Logo" class="footer-logo-img">
+        <p>Capturing the ephemeral beauty of the coast since 2021.</p>
+      </div>
+      <div class="footer-contact">
+        <h4>Connect</h4>
+        <p>notrealcompanyo@luminaphoto.co</p>
+        <p>+1 (234) 123-1234</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 LUMINA PHOTOGRAPHY. ALL RIGHTS RESERVED.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
