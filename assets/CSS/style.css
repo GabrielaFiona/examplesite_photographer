@@ -496,3 +496,34 @@ hr.divider {
   }
   .nav-links.is-open { display: flex; }
 }
+/* --- Contact Form Mobile & Aesthetic Enhancements --- */
+.contact-section {
+  max-width: 800px;
+  margin: 40px auto 0; /* Centered in the container */
+  padding: clamp(30px, 5vw, 60px);
+  background: #ffffff;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.contact-section .section-title {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 768px) {
+  .contact-section {
+    width: 100%; /* Spans more width on mobile */
+    padding: 30px 20px;
+    border-radius: var(--radius-sm);
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr; /* Stack inputs on mobile */
+    gap: 10px;
+  }
+
+  .form input, .form select, .form textarea {
+    font-size: 16px; /* Prevents iOS zoom on focus */
+  }
+}
