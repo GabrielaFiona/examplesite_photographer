@@ -442,3 +442,7 @@ $$('[data-cta]').forEach((el) => {
 window.addEventListener('DOMContentLoaded', () => {
   showPage('home');
 });
+
+if (action === 'view-work') {
+  showPage('home', { scrollTo: '#work' });
+}
