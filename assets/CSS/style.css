@@ -281,11 +281,11 @@ a { color: inherit; }
 
 .gallery-item.is-hidden { display: none; }
 
-/* About Section - UPDATED */
+/* About Section */
 .about-split {
   display: grid;
-  grid-template-columns: 0.8fr 1.2fr; /* Photo column is narrower than text */
-  gap: 80px; /* Increased space between picture and words */
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 80px;
   align-items: center;
   padding: 60px 0;
 }
@@ -297,9 +297,9 @@ a { color: inherit; }
 
 .artist-profile-img {
   width: 100%;
-  max-width: 380px; /* Forces the photo to be smaller */
+  max-width: 380px;
   height: auto;
-  margin-left: auto; /* Aligns toward the gap */
+  margin-left: auto;
 }
 
 .about-quote {
@@ -496,10 +496,11 @@ hr.divider {
   }
   .nav-links.is-open { display: flex; }
 }
+
 /* --- Contact Form Mobile & Aesthetic Enhancements --- */
 .contact-section {
   max-width: 800px;
-  margin: 40px auto 0; /* Centered in the container */
+  margin: 40px auto 0;
   padding: clamp(30px, 5vw, 60px);
   background: #ffffff;
   border: 1px solid var(--border);
@@ -513,17 +514,17 @@ hr.divider {
 
 @media (max-width: 768px) {
   .contact-section {
-    width: 100%; /* Spans more width on mobile */
+    width: 100%;
     padding: 30px 20px;
     border-radius: var(--radius-sm);
   }
 
   .form-grid {
-    grid-template-columns: 1fr; /* Stack inputs on mobile */
+    grid-template-columns: 1fr;
     gap: 10px;
   }
 
   .form input, .form select, .form textarea {
-    font-size: 16px; /* Prevents iOS zoom on focus */
+    font-size: 16px;
   }
 }
