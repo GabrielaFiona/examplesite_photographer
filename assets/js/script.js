@@ -446,3 +446,234 @@ window.addEventListener('DOMContentLoaded', () => {
 if (action === 'view-work') {
   showPage('home', { scrollTo: '#work' });
 }
+
+/*
+  LUMINA — lightweight, 2-page single-file site.
+*/
+
+const $ = (sel, root = document) => root.querySelector(sel);
+const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+
+// -------------------------------
+// Page switching
+// -------------------------------
+function showPage(pageId, opts = {}) {
+  const pages = $$('.page');
+  pages.forEach(p => p.classList.remove('active'));
+
+  const active = document.getElementById(pageId);
+  if (!active) return;
+  active.classList.add('active');
+
+  // Update nav active state
+  $$('.nav-link').forEach(a => a.classList.toggle('is-active', a.dataset.page === pageId));
+
+  // Close mobile nav if open
+  const navLinks = $('[data-nav-links]');
+  const toggle = $('.nav-toggle');
+  if (navLinks && toggle) {
+    navLinks.classList.remove('is-open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }
+
+  // Optional scrolling
+  if (opts.scrollTo) {
+    const target = $(opts.scrollTo);
+    if (target) {
+      // allow paint before scrolling
+      requestAnimationFrame(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+    }
+  } else {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
+
+// Nav link clicks
+$$('[data-page]').forEach(el => {
+  el.addEventListener('click', (e) => {
+    e.preventDefault();
+    const pageId = el.dataset.page;
+    
+    // Custom redirect for Gallery link in Nav to scroll to section
+    if (pageId === 'gallery') {
+      showPage('home', { scrollTo: '#work' });
+    } else {
+      showPage(pageId);
+    }
+  });
+});
+
+// Mobile nav toggle
+(() => {
+  const toggle = $('.nav-toggle');
+  const navLinks = $('[data-nav-links]');
+  if (!toggle || !navLinks) return;
+
+  toggle.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  // Close on outside click
+  document.addEventListener('click', (e) => {
+    if (!navLinks.classList.contains('is-open')) return;
+    const clickedInside = navLinks.contains(e.target) || toggle.contains(e.target);
+    if (!clickedInside) {
+      navLinks.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+})();
+
+// -------------------------------
+// Reveal animations
+// -------------------------------
+(() => {
+  const els = $$('.reveal');
+  if (!('IntersectionObserver' in window) || !els.length) {
+    els.forEach(el => el.classList.add('is-inview'));
+    return;
+  }
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-inview');
+          io.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12 }
+  );
+
+  els.forEach(el => io.observe(el));
+})();
+
+// -------------------------------
+// Gallery filter chips
+// -------------------------------
+(() => {
+  const chips = $$('.chip');
+  const items = $$('.gallery-item');
+  if (!chips.length || !items.length) return;
+
+  const applyFilter = (filter) => {
+    chips.forEach(c => c.classList.toggle('is-active', c.dataset.filter === filter));
+    items.forEach(it => {
+      const cat = (it.dataset.category || '').toLowerCase();
+      const show = filter === 'all' || cat === filter;
+      it.classList.toggle('is-hidden', !show);
+    });
+  };
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => applyFilter(chip.dataset.filter));
+  });
+})();
+
+// -------------------------------
+// Lightbox 
+// -------------------------------
+const lightbox = $('#lightbox');
+const lightboxImg = $('#lightbox-img');
+const lightboxCap = $('#lightbox-cap');
+let lightboxList = [];
+let lightboxIndex = 0;
+
+function rebuildLightboxList() {
+  const galleryImgs = $$('.gallery-item:not(.is-hidden) img').map(img => ({
+    src: img.currentSrc || img.src,
+    alt: img.alt || 'Gallery image'
+  }));
+  lightboxList = galleryImgs;
+}
+
+function openLightbox(index, altOverride = '') {
+  if (!lightbox || !lightboxImg) return;
+  rebuildLightboxList();
+  if (!lightboxList.length) return;
+
+  lightboxIndex = ((index % lightboxList.length) + lightboxList.length) % lightboxList.length;
+  const item = lightboxList[lightboxIndex];
+
+  lightboxImg.src = item.src;
+  lightboxImg.alt = altOverride || item.alt || 'Large photo';
+  if (lightboxCap) lightboxCap.textContent = (altOverride || item.alt || '').trim();
+
+  lightbox.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  if (!lightbox) return;
+  lightbox.classList.remove('is-open');
+  document.body.style.overflow = '';
+}
+
+function stepLightbox(dir) {
+  openLightbox(lightboxIndex + dir);
+}
+
+$$('.gallery-item img').forEach((img) => {
+  img.addEventListener('click', () => {
+    const visible = $$('.gallery-item:not(.is-hidden) img');
+    const idx = visible.indexOf(img);
+    openLightbox(idx, img.alt);
+  });
+});
+
+// -------------------------------
+// Inquiry funnel & CTA handlers
+// -------------------------------
+function buildMailto({ name, email, type, message }) {
+  const to = 'hello@yourdomain.com'; 
+  const subject = `Inquiry: ${type || 'Photography'}`;
+  const body = `Name: ${name}\nEmail: ${email}\nType: ${type}\n\nMessage:\n${message}`;
+  return `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
+function toast(msg) {
+  const t = document.createElement('div');
+  t.className = 'toast';
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 2400);
+}
+
+$$('[data-cta]').forEach((el) => {
+  el.addEventListener('click', () => {
+    const action = el.dataset.cta;
+
+    // Fix: Both "Check Availability" and "Book a Session" go to contact form
+    if (action === 'open-inquiry') {
+      showPage('services', { scrollTo: '#contact-title' });
+    }
+
+    if (action === 'view-work') {
+      showPage('home', { scrollTo: '#work' });
+    }
+  });
+});
+
+// Contact form submit
+(() => {
+  const form = $('#contact-form');
+  if (!form) return;
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const fd = new FormData(form);
+    const payload = {
+      name: fd.get('name'),
+      email: fd.get('email'),
+      type: fd.get('type'),
+      message: fd.get('message')
+    };
+    window.location.href = buildMailto(payload);
+  });
+})();
+
+window.addEventListener('DOMContentLoaded', () => {
+  showPage('home');
+});
